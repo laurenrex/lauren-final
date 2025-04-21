@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Guess My Number!</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
+      color: #4a148c;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #e91e63;
+    }
+
+    #gameBox {
+      background: #fce4ec;
+      border: 3px dashed #ba68c8;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 500px;
+      margin: 30px auto;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      border: 2px solid #ba68c8;
+      border-radius: 8px;
+      width: 80px;
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #e1bee7;
+      color: #4a148c;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 10px;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎀 Guess My Number! 🎀</h1>
+  <div id="gameBox">
+    <p>I’m thinking of a number between <strong>1 and 20</strong>... can you guess it?</p>
+    <input type="number" id="guessInput" min="1" max="20" />
+    <br />
+    <button onclick="checkGuess()">Submit Guess</button>
+    <p id="result"></p>
+  </div>
+
+  <script>
+    const secretNumber = Math.floor(Math.random() * 20) + 1;
+
+    function checkGuess() {
+      const guess = parseInt(document.getElementById("guessInput").value);
+      const result = document.getElementById("result");
+
+      if (!guess || guess < 1 || guess > 20) {
+        result.textContent = "🧁 Please enter a number between 1 and 20!";
+        result.style.color = "#d32f2f";
+        return;
+      }
+
+      if (guess === secretNumber) {
+        result.textContent = "🎉 OMG YAY! You guessed it right!";
+        result.style.color = "#388e3c";
+      } else if (guess < secretNumber) {
+        result.textContent = "📈 Too low! Try again, bestie 💪";
+        result.style.color = "#f57c00";
+      } else {
+        result.textContent = "📉 Too high! You got this 💖";
+        result.style.color = "#f57c00";
+      }
+    }
+  </script>
+
+</body>
+</html>
